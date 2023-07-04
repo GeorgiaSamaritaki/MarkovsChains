@@ -4,6 +4,7 @@ import java.util.ArrayList;
 // I'm deviating from variable naming conventions to remain 
 // close to mathematical representations
 // Following this lecture: https://math.dartmouth.edu/archive/m20x06/public_html/Lecture14.pdf
+
 public class Solution {
 	
     public static long[] solution(long[][] m) {

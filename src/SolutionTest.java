@@ -154,11 +154,6 @@ class SolutionTest {
         Matrix expectedInverseMatrix = new Matrix(expectedInverse);
 
         Matrix actualInverseMatrix = Matrix.inverse(originalMatrix);
-
-        System.out.println("Identity Inverse");
-        originalMatrix.print();
-        System.out.println("");
-        actualInverseMatrix.print();
         
         assertMatrixEquals(expectedInverseMatrix, actualInverseMatrix);
     }

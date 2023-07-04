@@ -1,4 +1,6 @@
 
+// Generic class to handle Fractions as objects
+
 class Fraction {
     long numerator;
     long denominator;

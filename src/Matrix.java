@@ -1,4 +1,5 @@
-import java.util.Arrays;
+
+//Generic class to handle Matrices containing Fraction
 
 class Matrix {
 	Fraction[][] matrix;
