@@ -53,6 +53,7 @@ public class Solution {
     	
     	//Last step is to multiple N by R
     	//We are always starting from place 0 so we only need the probabilities from that row
+    	//can be skipped if the whole matrix result is needed
     	Matrix Nr = Matrix.copyRows(N, 0, 1);
     	
     	Matrix B = Nr.multiply(Rf);

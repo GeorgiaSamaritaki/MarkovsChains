@@ -18,7 +18,7 @@ class Fraction {
     public Fraction subtract(Fraction other) {
         var newNumerator = (this.numerator * other.denominator) - (other.numerator * this.denominator);
         var newDenominator = this.denominator * other.denominator;
-        return simplify(new Fraction(newNumerator, newDenominator));
+        return new Fraction(newNumerator, newDenominator).simplify();
     }
     
     public static long gcd(long a, long b) {
@@ -30,16 +30,11 @@ class Fraction {
         return (a * b) / gcd(a, b);
     }
 
-    private static Fraction simplify(Fraction fraction) {
-        long commonDivisor = gcd(fraction.numerator, fraction.denominator);
-        long simplifiedNumerator = fraction.numerator / commonDivisor;
-        long simplifiedDenominator = fraction.denominator / commonDivisor;
-        
-        if(simplifiedNumerator < 0 && simplifiedDenominator < 0) {
-        	simplifiedNumerator *= -1;
-        	simplifiedDenominator *= -1;
-        }
-        return new Fraction(simplifiedNumerator, simplifiedDenominator);
+    private Fraction simplify() {
+        long commonDivisor = gcd(numerator, denominator);
+        numerator = numerator / commonDivisor;
+        denominator = denominator / commonDivisor;
+        return this;
     }
 
     public Fraction reciprocal() {
@@ -49,25 +44,25 @@ class Fraction {
     public Fraction multiply(Fraction other) {
     	var newNumerator = this.numerator * other.numerator;
     	var newDenominator = this.denominator*other.denominator;
-    	return simplify(new Fraction(newNumerator, newDenominator));
+    	return new Fraction(newNumerator, newDenominator).simplify();
     }
     
     public Fraction divide(Fraction other) {
     	var newNumerator = this.numerator * other.denominator;
     	var newDenominator = this.denominator * other.numerator;
-    	return simplify(new Fraction(newNumerator, newDenominator));
+    	return new Fraction(newNumerator, newDenominator).simplify();
     }
     
     public Fraction add(Fraction other) {
     	var newNumerator = (this.numerator * other.denominator) + (other.numerator * this.denominator);
     	var newDenominator = this.denominator * other.denominator;
-        return simplify(new Fraction(newNumerator, newDenominator));
+        return new Fraction(newNumerator, newDenominator).simplify();
     }
     
     public Fraction substract(Fraction other) {
     	var newNumerator = (this.numerator * other.denominator) - (other.numerator * this.denominator);
     	var newDenominator = this.denominator * other.denominator;
-        return simplify(new Fraction(newNumerator, newDenominator));
+        return new Fraction(newNumerator, newDenominator).simplify();
     }
     
     public Fraction duplicate() {
