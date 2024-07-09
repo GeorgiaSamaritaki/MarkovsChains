@@ -82,7 +82,7 @@ class Fraction {
     
     public Fraction getAbsolute() {
     	if(this.denominator < 0) 
-    		return new Fraction(this.numerator, -1*this.denominator); 
+    		return new Fraction(this.numerator, -1 * this.denominator); 
     	
     	return this;
     }

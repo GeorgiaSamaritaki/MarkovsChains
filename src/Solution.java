@@ -1,13 +1,48 @@
 import java.util.Arrays;
 import java.util.ArrayList;
 
-// I'm deviating from variable naming conventions to remain 
-// close to mathematical representations
-// Following this lecture: https://math.dartmouth.edu/archive/m20x06/public_html/Lecture14.pdf
+/**
+ * I'm deviating from variable naming conventions to remain 
+ * close to mathematical representations
+ * Following this lecture: https://math.dartmouth.edu/archive/m20x06/public_html/Lecture14.pdf
+ *
+ * Overview (by chatgpt confirmed by me):
+ * 1. Input Validation:
+ *    - The code first checks if the input matrix `m` is square (i.e., the number of rows equals the number of columns).
+ *      If not, it throws an `IllegalArgumentException`.
+ *
+ * 2. Identifying Transient and Absorbing States:
+ *    - The code iterates through each row of the matrix `m` to determine if it is a transient or absorbing state.
+ *      A transient state is identified if the sum of the row is not zero and it�s not an absorbing state
+ *      (i.e., it doesn't have a single 1 on the diagonal with all other entries zero).
+ *    - Transient states are collected in `QnR` and their corresponding row sums in `QnRDenominator`.
+ *
+ * 3. Creating Q and R Matrices:
+ *    - The transient states are used to form the `Q` and `R` matrices.
+ *      `Q` contains the probabilities of moving from one transient state to another transient state.
+ *      `R` contains the probabilities of moving from transient states to absorbing states.
+ *    - The denominators of the fractions in these matrices are stored in `denominators`.
+ *
+ * 4. Matrix Operations:
+ *    - The code then constructs matrix operations involving `Q`:
+ *      - It creates the identity matrix of size `t x t` (where `t` is the number of transient states).
+ *      - It computes `I - Q`, where `I` is the identity matrix.
+ *      - It calculates the inverse of `I - Q` to obtain the fundamental matrix `N`.
+ *      - Finally, it multiplies `N` by `R` to get the matrix `B`.
+ *
+ * 5. Finding the Solution:
+ *    - The solution vector consists of the probabilities of being absorbed into each absorbing state starting from the initial state.
+ *    - It converts these probabilities into fractions with a common denominator.
+ *
+ * 6. Returning the Result:
+ *    - The numerators of the resulting fractions, along with the common denominator, are assembled into the solution array and returned.
+ *
+ */
 
 public class Solution {
 	
     public static long[] solution(long[][] m) {
+
     	if(m.length != m[0].length) throw new IllegalArgumentException();
     	
     	int numStates = m.length; // total states
@@ -66,10 +101,12 @@ public class Solution {
     		solution[i] = Bn[i].numerator;
     	solution[r] = Bn[0].denominator;
     	
-//    	System.out.println("Solution " + solution.length);
-//    	for (long x : solution)
-//            System.out.print(x + " ");
-//    	
+    	System.out.println("Solution " + solution.length);
+    	for (long x : solution)
+            System.out.print(x + " ");
+    	
+    	System.out.println("");
+    	
     	return solution;
     }
 
